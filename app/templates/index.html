@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IG Video Scraper (Instaloader)</title>
+  <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; padding: 24px; color: #222; }
+    .card { border: 1px solid #eee; border-radius: 14px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.05); max-width: 860px; }
+    label { display:block; margin: 10px 0 4px; font-weight: 600;}
+    input, button { padding: 10px 12px; border: 1px solid #ddd; border-radius: 10px; }
+    input { width: 100%; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .muted { color: #666; font-size: 14px; }
+    .btn { cursor: pointer; background: #111; color: #fff; border: none; padding: 10px 14px; border-radius: 10px; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px;}
+    th, td { padding: 8px 10px; border-bottom: 1px solid #eee; text-align: left;}
+    .pill { padding: 4px 8px; background:#f2f2f2; border-radius: 999px; font-size: 12px;}
+    .grid { display: grid; gap: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Instagram Video Scraper (Instaloader)</h2>
+    <p class="muted">Gunakan untuk <b>konten publik</b> & patuhi ToS. Untuk akses lebih, isi kredensial IG Anda (opsional).</p>
+
+    <div class="grid">
+      <label>Username Instagram (tanpa @)</label>
+      <input id="username" placeholder="contoh: abangapple.id" />
+
+      <div class="row">
+        <div>
+          <label>IG User (opsional)</label>
+          <input id="ig_user" placeholder="user@example.com / username" />
+        </div>
+        <div>
+          <label>IG Pass (opsional)</label>
+          <input id="ig_pass" placeholder="password" type="password" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Maksimum Post</label>
+          <input id="max_posts" type="number" value="50" min="1" max="1000" />
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-top: 28px;">
+          <input id="only_videos" type="checkbox" checked />
+          <label for="only_videos" style="margin:0;">Hanya Video</label>
+        </div>
+      </div>
+
+      <button id="startBtn" class="btn">Mulai Scrape</button>
+    </div>
+
+    <hr style="margin:24px 0;"/>
+
+    <div id="statusBox">
+      <div>Status: <span id="status">-</span></div>
+      <div class="muted" id="statusMessage"></div>
+      <div id="downloadArea" style="margin-top:10px;"></div>
+    </div>
+
+    <div id="resultBox" style="display:none;">
+      <h3>Hasil</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal (UTC)</th>
+            <th>Shortcode</th>
+            <th>Video?</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody id="resultRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
